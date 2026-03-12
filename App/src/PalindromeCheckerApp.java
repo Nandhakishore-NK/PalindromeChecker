@@ -1,47 +1,71 @@
 import java.util.*;
 
 /**
- * PalindromeCheckerApp
+ * ================================================================
+ * MAIN CLASS - UseCase11PalindromeCheckerApp
+ * ================================================================
+ *
+ * Use Case 11: Object-Oriented Palindrome Service
  *
  * Description:
- * Checks whether a predefined string is a palindrome
- * using the two-pointer technique.
+ * This program checks whether a given string is a palindrome
+ * using a separate PalindromeChecker service class.
  *
- * - Compares characters from both ends
- * - Stops immediately if mismatch found
- *
- * @author Student
- * @version 2.0
+ * Key Concepts:
+ * - Encapsulation
+ * - Single Responsibility Principle
  */
-public class PalindromeCheckerApp {
+
+import java.util.Scanner;
+
+/**
+ * PalindromeChecker class encapsulates palindrome logic.
+ */
+class PalindromeChecker {
 
     /**
-     * Application entry point.
-     *
-     * @param args command line arguments
+     * Checks if the input string is a palindrome.
+     * @param input The string to check
+     * @return true if palindrome, false otherwise
      */
-    public static void main(String[] args) {
+    public boolean checkPalindrome(String input) {
 
-        // Predefined string
-        String str = "madam";
+        // Normalize input by removing non-alphanumeric and converting to lowercase
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
         int left = 0;
-        int right = str.length() - 1;
-        boolean isPalindrome = true;
+        int right = normalized.length() - 1;
 
-        // Two-pointer comparison
         while (left < right) {
-            if (str.charAt(left) != str.charAt(right)) {
-                isPalindrome = false;
-                break;
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                return false;
             }
             left++;
             right--;
         }
+        return true;
+    }
+}
 
-        // Output
-        System.out.println("Input text: " + str);
-        System.out.println("Is Palindrome: " + isPalindrome);
+/**
+ * Application entry point for UC11.
+ */
+public class rPalindromeCheckerApp {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Input: ");
+        String input = scanner.nextLine();
+
+        PalindromeChecker checker = new PalindromeChecker();
+
+        boolean result = checker.checkPalindrome(input);
+
+        System.out.println("Is Palindrome: " + result);
+
+        scanner.close();
     }
 }
 
