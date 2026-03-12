@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * PalindromeCheckerApp
  *
@@ -20,7 +22,7 @@ public class PalindromeCheckerApp {
 
     /**
      * Application entry point.
-     * JVM starts execution from this method.
+     * First method executed by JVM.
      *
      * @param args command line arguments
      */
@@ -60,3 +62,4 @@ public class PalindromeCheckerApp {
         System.out.println("Is Palindrome? " + isPalindrome);
     }
 }
+
