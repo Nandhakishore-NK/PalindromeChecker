@@ -1,34 +1,35 @@
+import java.util.*;
+
 /**
- * UseCase8PalindromeChecker
+ * UseCase6PalindromeChecker
  *
  * Description: Checks whether a string is a palindrome
- * using a LinkedList to demonstrate sequential node access
- * and removal from both ends.
+ * using both a Queue (FIFO) and a Stack (LIFO) to demonstrate
+ * the behavioral difference between these data structures.
  *
- * - Converts the string into a LinkedList of characters
- * - Removes first and last characters iteratively
- * - Compares characters to validate palindrome
+ * - Enqueues characters into a queue
+ * - Pushes characters into a stack
+ * - Compares dequeue vs pop to validate palindrome
  *
  * Key Concepts:
- * - LinkedList (Singly/Doubly)
- * - Node traversal
- * - removeFirst() & removeLast() operations
+ * - Queue (FIFO)
+ * - Stack (LIFO)
+ * - Enqueue & Dequeue operations
+ * - Pop operation
  * - Logical comparison for palindrome
  *
- * UC8: Linked List Based Palindrome Checker
- * Goal: Check palindrome using singly linked list.
+ * UC6: Queue + Stack Based Palindrome Check
+ * Goal: Demonstrate FIFO vs LIFO using Queue and Stack.
  *
  * Flow:
- * 1. Convert string to LinkedList
- * 2. Remove first and last nodes
- * 3. Compare characters
+ * 1. Enqueue characters into queue
+ * 2. Push characters into stack
+ * 3. Compare dequeue vs pop
  * 4. Print result
  *
  * @author Ananya
  * @version 1.0
  */
-import java.util.LinkedList;
-
 public class PalindromeCheckerApp {
 
     /**
@@ -39,29 +40,34 @@ public class PalindromeCheckerApp {
      */
     public static void main(String[] args) {
 
-        // Define the input string
-        String input = "level";
+        // Input string to check
+        String input = "civic";
 
-        // Create LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        // Create a queue to store characters in FIFO order
+        Queue<Character> queue = new LinkedList<>();
 
-        // Add each character from string into the LinkedList
-        for(char c : input.toCharArray()) {
-            list.add(c);
+        // Create a stack to store characters in LIFO order
+        Stack<Character> stack = new Stack<>();
+
+        // Insert each character into both queue and stack
+        for (char c : input.toCharArray()) {
+            queue.add(c);   // Enqueue character
+            stack.push(c);  // Push character
         }
 
-        // Assume the string is a palindrome initially
+        // Assume the string is a palindrome
         boolean isPalindrome = true;
 
-        // Compare first and last elements until 0 or 1 element remains
-        while(list.size() > 1) {
-            if(list.removeFirst() != list.removeLast()) {
+        // Compare queue (FIFO) with stack (LIFO)
+        while (!queue.isEmpty()) {
+            if (queue.remove() != stack.pop()) {
                 isPalindrome = false;
-                break;
+                break; // Stop early if mismatch found
             }
         }
 
-        // Output the result
+        // Print input and result
+        System.out.println("Input: " + input);
         System.out.println("Is Palindrome? " + isPalindrome);
     }
 }
