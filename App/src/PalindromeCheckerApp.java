@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * ================================================================
  * MAIN CLASS - PalindromeCheckerApp
@@ -19,7 +21,12 @@
 
 import java.util.Scanner;
 
-public class PalindromeCheckerApp {
+import java.util.Scanner;
+
+/**
+ * PalindromeChecker class encapsulates palindrome logic.
+ */
+class PalindromeChecker {
 
     public static void main(String[] args) {
 
@@ -47,3 +54,4 @@ public class PalindromeCheckerApp {
         scanner.close();
     }
 }
+
