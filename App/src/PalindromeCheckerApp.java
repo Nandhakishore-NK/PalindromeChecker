@@ -1,67 +1,62 @@
 /**
- * UseCase8PalindromeChecker
+ * PalindromeCheckerApp
  *
  * Description: Checks whether a string is a palindrome
- * using a LinkedList to demonstrate sequential node access
- * and removal from both ends.
+ * using character array comparison with two-pointer technique.
  *
- * - Converts the string into a LinkedList of characters
- * - Removes first and last characters iteratively
- * - Compares characters to validate palindrome
+ * - Converts string to char array
+ * - Compares characters from both ends
+ * - Stops early if mismatch found
  *
  * Key Concepts:
- * - LinkedList (Singly/Doubly)
- * - Node traversal
- * - removeFirst() & removeLast() operations
- * - Logical comparison for palindrome
+ * - Arrays
+ * - Two-pointer technique
+ * - Boolean flag logic
  *
- * UC8: Linked List Based Palindrome Checker
- * Goal: Check palindrome using singly linked list.
- *
- * Flow:
- * 1. Convert string to LinkedList
- * 2. Remove first and last nodes
- * 3. Compare characters
- * 4. Print result
- *
- * @author Ananya
+ * @author Student
  * @version 1.0
  */
-import java.util.LinkedList;
-
 public class PalindromeCheckerApp {
 
     /**
      * Application entry point.
      * JVM starts execution from this method.
      *
-     * @param args command line arguments (optional)
+     * @param args command line arguments
      */
     public static void main(String[] args) {
 
-        // Define the input string
-        String input = "level";
+        // Declare and initialize the input string
+        String input = "radar";
 
-        // Create LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        // Convert the string into a character array
+        char[] chars = input.toCharArray();
 
-        // Add each character from string into the LinkedList
-        for(char c : input.toCharArray()) {
-            list.add(c);
-        }
+        // Initialize pointer at the beginning of the array
+        int start = 0;
 
-        // Assume the string is a palindrome initially
+        // Initialize pointer at the end of the array
+        int end = chars.length - 1;
+
+        // Assume the string is palindrome initially
         boolean isPalindrome = true;
 
-        // Compare first and last elements until 0 or 1 element remains
-        while(list.size() > 1) {
-            if(list.removeFirst() != list.removeLast()) {
+        // Compare characters from both ends moving inward
+        while (start < end) {
+
+            // If mismatch found, it is not a palindrome
+            if (chars[start] != chars[end]) {
                 isPalindrome = false;
                 break;
             }
+
+            // Move pointers toward center
+            start++;
+            end--;
         }
 
-        // Output the result
+        // Display input and result
+        System.out.println("Input: " + input);
         System.out.println("Is Palindrome? " + isPalindrome);
     }
 }
