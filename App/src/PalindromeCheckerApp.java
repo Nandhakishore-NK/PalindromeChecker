@@ -1,33 +1,30 @@
 /**
- * UseCase8PalindromeChecker
+ * UseCasePalindromeChecker
  *
  * Description: Checks whether a string is a palindrome
- * using a LinkedList to demonstrate sequential node access
- * and removal from both ends.
+ * using a Stack data structure.
  *
- * - Converts the string into a LinkedList of characters
- * - Removes first and last characters iteratively
- * - Compares characters to validate palindrome
+ * - Pushes characters into a stack
+ * - Pops characters to reverse order
+ * - Compares with original characters
  *
  * Key Concepts:
- * - LinkedList (Singly/Doubly)
- * - Node traversal
- * - removeFirst() & removeLast() operations
- * - Logical comparison for palindrome
+ * - Stack (LIFO)
+ * - Push and Pop operations
+ * - Boolean flag logic
  *
- * UC8: Linked List Based Palindrome Checker
- * Goal: Check palindrome using singly linked list.
+ * UC5: Stack-Based Palindrome Checker
+ * Goal: Use stack to reverse characters and validate palindrome.
  *
  * Flow:
- * 1. Convert string to LinkedList
- * 2. Remove first and last nodes
- * 3. Compare characters
- * 4. Print result
+ * 1. Push characters into stack
+ * 2. Pop and compare with original string
+ * 3. Print result
  *
  * @author Ananya
  * @version 1.0
  */
-import java.util.LinkedList;
+import java.util.Stack;
 
 public class PalindromeCheckerApp {
 
@@ -39,29 +36,30 @@ public class PalindromeCheckerApp {
      */
     public static void main(String[] args) {
 
-        // Define the input string
-        String input = "level";
+        // Input string to check (hardcoded for now)
+        String input = "noon";
 
-        // Create LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        // Create a stack to store characters
+        Stack<Character> stack = new Stack<>();
 
-        // Add each character from string into the LinkedList
-        for(char c : input.toCharArray()) {
-            list.add(c);
+        // Push each character from input into the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
         }
 
-        // Assume the string is a palindrome initially
+        // Assume the string is a palindrome
         boolean isPalindrome = true;
 
-        // Compare first and last elements until 0 or 1 element remains
-        while(list.size() > 1) {
-            if(list.removeFirst() != list.removeLast()) {
+        // Compare original string with stack reversed characters
+        for (char c : input.toCharArray()) {
+            if (stack.pop() != c) {
                 isPalindrome = false;
-                break;
+                break; // Stop early if mismatch found
             }
         }
 
-        // Output the result
+        // Print the result
+        System.out.println("Input: " + input);
         System.out.println("Is Palindrome? " + isPalindrome);
     }
 }
