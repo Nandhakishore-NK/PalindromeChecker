@@ -32,13 +32,9 @@ import java.util.*;
  */
 public class PalindromeCheckerApp {
 
-    /**
-     * Application entry point.
-     * JVM starts execution from this method.
-     *
-     * @param args command line arguments (optional)
-     */
-    public static void main(String[] args) {
+interface PalindromeStrategy {
+    boolean check(String input);
+}
 
         // Input string to check
         String input = "civic";
