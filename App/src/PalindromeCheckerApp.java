@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * UseCasePalindromeChecker
  *
@@ -21,7 +23,7 @@
  * 2. Pop and compare with original string
  * 3. Print result
  *
- * @author Ananya
+ * @author Student
  * @version 1.0
  */
 import java.util.Stack;
@@ -30,9 +32,9 @@ public class PalindromeCheckerApp {
 
     /**
      * Application entry point.
-     * JVM starts execution from this method.
+     * First method executed by JVM.
      *
-     * @param args command line arguments (optional)
+     * @param args command line arguments
      */
     public static void main(String[] args) {
 
@@ -56,6 +58,10 @@ public class PalindromeCheckerApp {
                 isPalindrome = false;
                 break; // Stop early if mismatch found
             }
+
+            // Move pointers toward center
+            start++;
+            end--;
         }
 
         // Print the result
@@ -63,3 +69,4 @@ public class PalindromeCheckerApp {
         System.out.println("Is Palindrome? " + isPalindrome);
     }
 }
+
