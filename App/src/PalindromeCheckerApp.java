@@ -2,19 +2,24 @@ import java.util.*;
 
 /**
  * ================================================================
- * MAIN CLASS - UseCase11PalindromeCheckerApp
+ * MAIN CLASS - PalindromeCheckerApp
  * ================================================================
  *
- * Use Case 11: Object-Oriented Palindrome Service
+ * Use Case 10: Case-Insensitive & Space-Ignored Palindrome
  *
  * Description:
- * This program checks whether a given string is a palindrome
- * using a separate PalindromeChecker service class.
+ * This class validates a palindrome after preprocessing
+ * the input string.
  *
- * Key Concepts:
- * - Encapsulation
- * - Single Responsibility Principle
+ * Normalization includes:
+ * - Removing spaces and symbols
+ * - Converting to lowercase
+ *
+ * Example:
+ * "A man a plan a canal Panama"
  */
+
+import java.util.Scanner;
 
 import java.util.Scanner;
 
@@ -23,35 +28,6 @@ import java.util.Scanner;
  */
 class PalindromeChecker {
 
-    /**
-     * Checks if the input string is a palindrome.
-     * @param input The string to check
-     * @return true if palindrome, false otherwise
-     */
-    public boolean checkPalindrome(String input) {
-
-        // Normalize input by removing non-alphanumeric and converting to lowercase
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-
-        int left = 0;
-        int right = normalized.length() - 1;
-
-        while (left < right) {
-            if (normalized.charAt(left) != normalized.charAt(right)) {
-                return false;
-            }
-            left++;
-            right--;
-        }
-        return true;
-    }
-}
-
-/**
- * Application entry point for UC11.
- */
-public class rPalindromeCheckerApp {
-
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -59,11 +35,21 @@ public class rPalindromeCheckerApp {
         System.out.print("Input: ");
         String input = scanner.nextLine();
 
-        PalindromeChecker checker = new PalindromeChecker();
+        // Normalize string
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        boolean result = checker.checkPalindrome(input);
+        boolean isPalindrome = true;
 
-        System.out.println("Is Palindrome: " + result);
+        // Compare characters from both ends
+        for (int i = 0; i < normalized.length() / 2; i++) {
+
+            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        System.out.println("Is Palindrome: " + isPalindrome);
 
         scanner.close();
     }
