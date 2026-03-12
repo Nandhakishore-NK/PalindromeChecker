@@ -1,67 +1,68 @@
 /**
- * UseCase8PalindromeChecker
+ * ================================================================
+ * MAIN CLASS - UseCase11PalindromeCheckerApp
+ * ================================================================
  *
- * Description: Checks whether a string is a palindrome
- * using a LinkedList to demonstrate sequential node access
- * and removal from both ends.
+ * Use Case 11: Object-Oriented Palindrome Service
  *
- * - Converts the string into a LinkedList of characters
- * - Removes first and last characters iteratively
- * - Compares characters to validate palindrome
+ * Description:
+ * This program checks whether a given string is a palindrome
+ * using a separate PalindromeChecker service class.
  *
  * Key Concepts:
- * - LinkedList (Singly/Doubly)
- * - Node traversal
- * - removeFirst() & removeLast() operations
- * - Logical comparison for palindrome
- *
- * UC8: Linked List Based Palindrome Checker
- * Goal: Check palindrome using singly linked list.
- *
- * Flow:
- * 1. Convert string to LinkedList
- * 2. Remove first and last nodes
- * 3. Compare characters
- * 4. Print result
- *
- * @author Ananya
- * @version 1.0
+ * - Encapsulation
+ * - Single Responsibility Principle
  */
-import java.util.LinkedList;
 
-public class PalindromeCheckerApp {
+import java.util.Scanner;
+
+/**
+ * PalindromeChecker class encapsulates palindrome logic.
+ */
+class PalindromeChecker {
 
     /**
-     * Application entry point.
-     * JVM starts execution from this method.
-     *
-     * @param args command line arguments (optional)
+     * Checks if the input string is a palindrome.
+     * @param input The string to check
+     * @return true if palindrome, false otherwise
      */
+    public boolean checkPalindrome(String input) {
+
+        // Normalize input by removing non-alphanumeric and converting to lowercase
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        int left = 0;
+        int right = normalized.length() - 1;
+
+        while (left < right) {
+            if (normalized.charAt(left) != normalized.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
+
+/**
+ * Application entry point for UC11.
+ */
+public class rPalindromeCheckerApp {
+
     public static void main(String[] args) {
 
-        // Define the input string
-        String input = "level";
+        Scanner scanner = new Scanner(System.in);
 
-        // Create LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        System.out.print("Input: ");
+        String input = scanner.nextLine();
 
-        // Add each character from string into the LinkedList
-        for(char c : input.toCharArray()) {
-            list.add(c);
-        }
+        PalindromeChecker checker = new PalindromeChecker();
 
-        // Assume the string is a palindrome initially
-        boolean isPalindrome = true;
+        boolean result = checker.checkPalindrome(input);
 
-        // Compare first and last elements until 0 or 1 element remains
-        while(list.size() > 1) {
-            if(list.removeFirst() != list.removeLast()) {
-                isPalindrome = false;
-                break;
-            }
-        }
+        System.out.println("Is Palindrome: " + result);
 
-        // Output the result
-        System.out.println("Is Palindrome? " + isPalindrome);
+        scanner.close();
     }
 }
