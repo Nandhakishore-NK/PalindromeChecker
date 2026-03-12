@@ -1,67 +1,45 @@
 /**
- * UseCase8PalindromeChecker
+ * PalindromeCheckerApp
  *
- * Description: Checks whether a string is a palindrome
- * using a LinkedList to demonstrate sequential node access
- * and removal from both ends.
+ * Description:
+ * Checks whether a predefined string is a palindrome
+ * using the two-pointer technique.
  *
- * - Converts the string into a LinkedList of characters
- * - Removes first and last characters iteratively
- * - Compares characters to validate palindrome
+ * - Compares characters from both ends
+ * - Stops immediately if mismatch found
  *
- * Key Concepts:
- * - LinkedList (Singly/Doubly)
- * - Node traversal
- * - removeFirst() & removeLast() operations
- * - Logical comparison for palindrome
- *
- * UC8: Linked List Based Palindrome Checker
- * Goal: Check palindrome using singly linked list.
- *
- * Flow:
- * 1. Convert string to LinkedList
- * 2. Remove first and last nodes
- * 3. Compare characters
- * 4. Print result
- *
- * @author Ananya
- * @version 1.0
+ * @author Student
+ * @version 2.0
  */
-import java.util.LinkedList;
-
 public class PalindromeCheckerApp {
 
     /**
      * Application entry point.
-     * JVM starts execution from this method.
      *
-     * @param args command line arguments (optional)
+     * @param args command line arguments
      */
     public static void main(String[] args) {
 
-        // Define the input string
-        String input = "level";
+        // Predefined string
+        String str = "madam";
 
-        // Create LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
-
-        // Add each character from string into the LinkedList
-        for(char c : input.toCharArray()) {
-            list.add(c);
-        }
-
-        // Assume the string is a palindrome initially
+        int left = 0;
+        int right = str.length() - 1;
         boolean isPalindrome = true;
 
-        // Compare first and last elements until 0 or 1 element remains
-        while(list.size() > 1) {
-            if(list.removeFirst() != list.removeLast()) {
+        // Two-pointer comparison
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
                 isPalindrome = false;
                 break;
             }
+            left++;
+            right--;
         }
 
-        // Output the result
-        System.out.println("Is Palindrome? " + isPalindrome);
+        // Output
+        System.out.println("Input text: " + str);
+        System.out.println("Is Palindrome: " + isPalindrome);
     }
 }
+
