@@ -1,22 +1,14 @@
 import java.util.*;
 
 /**
- * ================================================================
- * MAIN CLASS - PalindromeCheckerApp
- * ================================================================
- *
- * Use Case 10: Case-Insensitive & Space-Ignored Palindrome
+ * UseCasePalindromeChecker
  *
  * Description:
- * This class validates a palindrome after preprocessing
- * the input string.
+ * Application entry point of the system.
+ * Displays welcome message and initializes the application.
  *
- * Normalization includes:
- * - Removing spaces and symbols
- * - Converting to lowercase
- *
- * Example:
- * "A man a plan a canal Panama"
+ * @author Student
+ * @version 1.0
  */
 
 import java.util.Scanner;
@@ -28,30 +20,18 @@ import java.util.Scanner;
  */
 class PalindromeChecker {
 
+    /**
+     * Application entry point.
+     * First method executed by JVM.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        System.out.println("Welcome to the Palindrome Checker Management System");
+        System.out.println("Version : 1.0");
+        System.out.println("System initialized successfully.");
 
-        System.out.print("Input: ");
-        String input = scanner.nextLine();
-
-        // Normalize string
-        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
-
-        boolean isPalindrome = true;
-
-        // Compare characters from both ends
-        for (int i = 0; i < normalized.length() / 2; i++) {
-
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        System.out.println("Is Palindrome: " + isPalindrome);
-
-        scanner.close();
     }
 }
 
