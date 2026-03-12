@@ -1,67 +1,67 @@
 /**
- * UseCase8PalindromeChecker
+ * ================================================================
+ * MAIN CLASS - PalindromeCheckerApp
+ * ================================================================
  *
- * Description: Checks whether a string is a palindrome
- * using a LinkedList to demonstrate sequential node access
- * and removal from both ends.
+ * Use Case 12: Strategy Pattern for Palindrome Algorithms (Advanced)
  *
- * - Converts the string into a LinkedList of characters
- * - Removes first and last characters iteratively
- * - Compares characters to validate palindrome
- *
- * Key Concepts:
- * - LinkedList (Singly/Doubly)
- * - Node traversal
- * - removeFirst() & removeLast() operations
- * - Logical comparison for palindrome
- *
- * UC8: Linked List Based Palindrome Checker
- * Goal: Check palindrome using singly linked list.
- *
- * Flow:
- * 1. Convert string to LinkedList
- * 2. Remove first and last nodes
- * 3. Compare characters
- * 4. Print result
- *
- * @author Ananya
- * @version 1.0
+ * Description:
+ * Checks if a string is palindrome using Stack strategy internally.
  */
-import java.util.LinkedList;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+interface PalindromeStrategy {
+    boolean check(String input);
+}
+
+class StackStrategy implements PalindromeStrategy {
+
+    @Override
+    public boolean check(String input) {
+        // Normalize input
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        Stack<Character> stack = new Stack<>();
+
+        for (char c : normalized.toCharArray()) {
+            stack.push(c);
+        }
+
+        for (char c : normalized.toCharArray()) {
+            if (c != stack.pop()) return false;
+        }
+
+        return true;
+    }
+}
 
 public class PalindromeCheckerApp {
 
-    /**
-     * Application entry point.
-     * JVM starts execution from this method.
-     *
-     * @param args command line arguments (optional)
-     */
+    private PalindromeStrategy strategy;
+
+    public PalindromeCheckerApp() {
+        // Use StackStrategy internally
+        this.strategy = new StackStrategy();
+    }
+
+    public boolean check(String input) {
+        return strategy.check(input);
+    }
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        // Define the input string
-        String input = "level";
+        System.out.print("Input : ");
+        String input = scanner.nextLine();
 
-        // Create LinkedList to store characters
-        LinkedList<Character> list = new LinkedList<>();
+        PalindromeCheckerApp app = new PalindromeCheckerApp();
 
-        // Add each character from string into the LinkedList
-        for(char c : input.toCharArray()) {
-            list.add(c);
-        }
+        boolean result = app.check(input);
 
-        // Assume the string is a palindrome initially
-        boolean isPalindrome = true;
+        System.out.println("Is Palindrome? : " + result);
 
-        // Compare first and last elements until 0 or 1 element remains
-        while(list.size() > 1) {
-            if(list.removeFirst() != list.removeLast()) {
-                isPalindrome = false;
-                break;
-            }
-        }
-
-        // Output the result
-        System.out.println("Is Palindrome? " + isPalindrome);
+        scanner.close();
     }
 }
