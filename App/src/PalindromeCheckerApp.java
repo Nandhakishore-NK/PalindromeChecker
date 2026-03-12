@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * ================================================================
  * MAIN CLASS - UseCase11PalindromeCheckerApp
@@ -66,3 +68,4 @@ public class rPalindromeCheckerApp {
         scanner.close();
     }
 }
+
