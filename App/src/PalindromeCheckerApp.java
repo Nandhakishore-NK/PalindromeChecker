@@ -1,36 +1,47 @@
 import java.util.*;
 
 /**
- * UC3: Palindrome Check Using String Reverse
+ * PalindromeCheckerApp
  *
- * Goal:
- * Reverse a string and compare with original.
+ * Description:
+ * Checks whether a predefined string is a palindrome
+ * using the two-pointer technique.
+ *
+ * - Compares characters from both ends
+ * - Stops immediately if mismatch found
+ *
+ * @author Student
+ * @version 2.0
  */
 public class PalindromeCheckerApp {
 
+    /**
+     * Application entry point.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
 
-        // Check if user provided input
-        if (args.length == 0) {
-            System.out.println("Please provide input string");
-            return;
+        // Predefined string
+        String str = "madam";
+
+        int left = 0;
+        int right = str.length() - 1;
+        boolean isPalindrome = true;
+
+        // Two-pointer comparison
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                isPalindrome = false;
+                break;
+            }
+            left++;
+            right--;
         }
 
-        String input = args[0];
-        String reversed = "";
-
-        // Reverse using loop
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed += input.charAt(i);
-        }
-
-        // Compare strings
-        if (input.equals(reversed)) {
-            System.out.println("Input: " + input);
-            System.out.println("Palindrome: true");
-        } else {
-            System.out.println("Input: " + input);
-            System.out.println("Palindrome: false");
-        }
+        // Output
+        System.out.println("Input text: " + str);
+        System.out.println("Is Palindrome: " + isPalindrome);
     }
 }
+
