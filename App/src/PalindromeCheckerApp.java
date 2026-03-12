@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * UC3: Palindrome Check Using String Reverse
  *
