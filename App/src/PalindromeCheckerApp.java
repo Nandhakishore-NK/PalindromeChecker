@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * UseCasePalindromeChecker
  *
@@ -9,7 +11,14 @@
  * @version 1.0
  */
 
-public class PalindromeCheckerApp {
+import java.util.Scanner;
+
+import java.util.Scanner;
+
+/**
+ * PalindromeChecker class encapsulates palindrome logic.
+ */
+class PalindromeChecker {
 
     /**
      * Application entry point.
